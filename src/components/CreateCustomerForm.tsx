@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { UserPlus } from "lucide-react";
 
 interface CreateCustomerFormProps {
   onCreated: () => void;
@@ -34,27 +35,32 @@ const CreateCustomerForm = ({ onCreated }: CreateCustomerFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-6 rounded-lg border border-border bg-card">
-      <h3 className="text-lg font-semibold text-card-foreground">New Customer</h3>
+    <form onSubmit={handleSubmit} className="glass-card p-6 space-y-5">
+      <div className="flex items-center gap-3">
+        <div className="h-9 w-9 rounded-xl gradient-accent flex items-center justify-center">
+          <UserPlus className="h-4.5 w-4.5 text-accent-foreground" />
+        </div>
+        <h3 className="font-display text-lg font-semibold text-foreground">New Customer</h3>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label htmlFor="firstName">First Name</Label>
-          <Input id="firstName" value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} required />
+          <Label htmlFor="firstName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">First Name</Label>
+          <Input id="firstName" placeholder="John" value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} required className="h-11" />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="lastName">Last Name</Label>
-          <Input id="lastName" value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} required />
+          <Label htmlFor="lastName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Last Name</Label>
+          <Input id="lastName" placeholder="Doe" value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} required className="h-11" />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="accountNumber">Account Number</Label>
-          <Input id="accountNumber" value={form.accountNumber} onChange={(e) => setForm({ ...form, accountNumber: e.target.value })} required />
+          <Label htmlFor="accountNumber" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Account Number</Label>
+          <Input id="accountNumber" placeholder="ACC-001" value={form.accountNumber} onChange={(e) => setForm({ ...form, accountNumber: e.target.value })} required className="h-11 font-mono" />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="balance">Initial Balance</Label>
-          <Input id="balance" type="number" step="0.01" min="0" value={form.balance} onChange={(e) => setForm({ ...form, balance: e.target.value })} required />
+          <Label htmlFor="balance" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Initial Balance</Label>
+          <Input id="balance" type="number" step="0.01" min="0" placeholder="0.00" value={form.balance} onChange={(e) => setForm({ ...form, balance: e.target.value })} required className="h-11" />
         </div>
       </div>
-      <Button type="submit" disabled={submitting} className="w-full sm:w-auto">
+      <Button type="submit" disabled={submitting} size="lg">
         {submitting ? "Creating..." : "Create Customer"}
       </Button>
     </form>
