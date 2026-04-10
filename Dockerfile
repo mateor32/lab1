@@ -1,4 +1,5 @@
-FROM openjdk:17
+FROM eclipse-temurin:17-jre
+WORKDIR /app
 EXPOSE 8080
-ADD target/lab12026.jar lab12026.jar
-ENTRYPOINT ["java","-jar","/lab12026.jar"]
+COPY backend/lab12026/target/lab12026-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]

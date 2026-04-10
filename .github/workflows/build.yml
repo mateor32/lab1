@@ -112,7 +112,7 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: backend/lab12026/target/lab12026.jar
+          path: backend/lab12026/target/lab12026-0.0.1-SNAPSHOT.jar
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
