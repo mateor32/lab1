@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/transactions", produces = "application/json")
-@CrossOrigin(origins = "http://localhost:8081")
+@RequestMapping(value = "/api/transactions", produces = "application/json")
+@CrossOrigin(origins = "*")
 public class TransactionController {
 
     @Autowired
     private TransactionService transactionService;
-
 
     @PostMapping
     public ResponseEntity<?> transferMoney(@RequestBody TransactionDTO transactionDTO) {
@@ -36,6 +35,5 @@ public class TransactionController {
     public List<TransactionDTO> getTransactionsByAccount(@PathVariable String accountNumber) {
         return transactionService.getTransactionsForAccount(accountNumber);
     }
-
 
 }
