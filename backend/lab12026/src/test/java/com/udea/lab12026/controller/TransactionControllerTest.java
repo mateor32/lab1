@@ -66,12 +66,12 @@ class TransactionControllerTest {
         receiver.setBalance(5000.0);
         receiver = customerRepository.save(receiver);
 
-        return new Customer[]{sender, receiver};
+        return new Customer[] { sender, receiver };
     }
 
     // ========================
     // 1. Prueba: transferencia exitosa (POST /api/transactions)
-    //    Valida que se cree la transacción y se retornen los datos correctos.
+    // Valida que se cree la transacción y se retornen los datos correctos.
     // ========================
     @Test
     @Order(1)
@@ -85,8 +85,8 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         MvcResult result = mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -102,7 +102,7 @@ class TransactionControllerTest {
 
     // ========================
     // 2. Prueba: los saldos se actualizan correctamente después de transferir
-    //    Verifica que el remitente pierde y el receptor gana el monto.
+    // Verifica que el remitente pierde y el receptor gana el monto.
     // ========================
     @Test
     @Order(2)
@@ -116,8 +116,8 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk());
 
         // Verifica saldos en BD
@@ -132,7 +132,7 @@ class TransactionControllerTest {
 
     // ========================
     // 3. Prueba: transferencia con saldo insuficiente retorna 400
-    //    Valida el manejo de error cuando no hay fondos suficientes.
+    // Valida el manejo de error cuando no hay fondos suficientes.
     // ========================
     @Test
     @Order(3)
@@ -146,14 +146,14 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest());
     }
 
     // ========================
     // 4. Prueba: transferencia con cuenta inexistente retorna 400
-    //    Valida el error cuando la cuenta del remitente no existe.
+    // Valida el error cuando la cuenta del remitente no existe.
     // ========================
     @Test
     @Order(4)
@@ -167,14 +167,14 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest());
     }
 
     // ========================
     // 5. Prueba: obtener todas las transacciones (GET /api/transactions)
-    //    Valida el tamaño de la lista retornada.
+    // Valida el tamaño de la lista retornada.
     // ========================
     @Test
     @Order(5)
@@ -190,8 +190,8 @@ class TransactionControllerTest {
             dto.setTimestamp(LocalDateTime.now());
 
             mockMvc.perform(post("/api/transactions")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(dto)))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(dto)))
                     .andExpect(status().isOk());
         }
 
@@ -206,8 +206,9 @@ class TransactionControllerTest {
     }
 
     // ========================
-    // 6. Prueba: obtener transacciones por cuenta (GET /api/transactions/{accountNumber})
-    //    Valida que filtra correctamente por número de cuenta.
+    // 6. Prueba: obtener transacciones por cuenta (GET
+    // /api/transactions/{accountNumber})
+    // Valida que filtra correctamente por número de cuenta.
     // ========================
     @Test
     @Order(6)
@@ -221,8 +222,8 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk());
 
         MvcResult result = mockMvc.perform(get("/api/transactions/ACC-SENDER-001"))
@@ -239,7 +240,7 @@ class TransactionControllerTest {
 
     // ========================
     // 7. Prueba: validar formato de números de cuenta en la transacción
-    //    Usa regex para verificar que los accountNumbers cumplan el patrón.
+    // Usa regex para verificar que los accountNumbers cumplan el patrón.
     // ========================
     @Test
     @Order(7)
@@ -253,8 +254,8 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         MvcResult result = mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -271,7 +272,7 @@ class TransactionControllerTest {
 
     // ========================
     // 8. Prueba: el monto de la transacción debe ser positivo
-    //    Valida que el amount retornado sea mayor que cero.
+    // Valida que el amount retornado sea mayor que cero.
     // ========================
     @Test
     @Order(8)
@@ -285,8 +286,8 @@ class TransactionControllerTest {
         dto.setTimestamp(LocalDateTime.now());
 
         MvcResult result = mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -299,7 +300,7 @@ class TransactionControllerTest {
 
     // ========================
     // 9. Prueba: lista vacía cuando no hay transacciones
-    //    Verifica que GET /api/transactions retorne lista vacía si no hay datos.
+    // Verifica que GET /api/transactions retorne lista vacía si no hay datos.
     // ========================
     @Test
     @Order(9)
@@ -315,8 +316,9 @@ class TransactionControllerTest {
     }
 
     // ========================
-    // 10. Prueba de rendimiento: medir tiempo de respuesta de POST /api/transactions
-    //     Verifica que la transferencia se complete en menos de 2 segundos.
+    // 10. Prueba de rendimiento: medir tiempo de respuesta de POST
+    // /api/transactions
+    // Verifica que la transferencia se complete en menos de 2 segundos.
     // ========================
     @Test
     @Order(10)
@@ -332,8 +334,8 @@ class TransactionControllerTest {
         long inicio = System.currentTimeMillis();
 
         mockMvc.perform(post("/api/transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk());
 
         long fin = System.currentTimeMillis();
@@ -345,7 +347,7 @@ class TransactionControllerTest {
 
     // ========================
     // 11. Prueba: content-type de la respuesta es JSON
-    //     Valida que el servidor retorne application/json.
+    // Valida que el servidor retorne application/json.
     // ========================
     @Test
     @Order(11)

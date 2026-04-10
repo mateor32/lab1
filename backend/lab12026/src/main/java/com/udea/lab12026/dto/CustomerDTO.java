@@ -8,7 +8,8 @@ public class CustomerDTO {
     private String accountNumber;
     private Double balance;
 
-    public CustomerDTO() {}
+    public CustomerDTO() {
+    }
 
     public CustomerDTO(Long id, String firstName, String lastName, String accountNumber, Double balance) {
         this.id = id;
