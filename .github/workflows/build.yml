@@ -112,4 +112,14 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: backend/lab12026/target/lab12026-0.0.1-SNAPSHOT.jar
+          path: backend/lab12026/target/lab12026.jar
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: mateor32/lab12026
+          tags: latest
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

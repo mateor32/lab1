@@ -154,7 +154,7 @@
 			</executions>
 		</plugin>
 		</plugins>
-		<finalName>lab22026</finalName>
+		<finalName>lab12026</finalName>
 	</build>
 
 </project>
