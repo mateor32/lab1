@@ -1,6 +1,10 @@
 ### Lab22026
 
 [![CI/CD Pipeline](https://github.com/mateor32/lab1/actions/workflows/build.yml/badge.svg)](https://github.com/mateor32/lab1/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mateor32_lab1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mateor32_lab1)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mateor32_lab1&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mateor32_lab1)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mateor32_lab1&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mateor32_lab1)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mateor32_lab1&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mateor32_lab1)
 
 Implementation of a Simple App with the next operations:
 
